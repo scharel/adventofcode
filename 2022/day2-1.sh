@@ -16,13 +16,15 @@ scores=(1 0 2 2 1 0 0 2 1)
 hands=(Rock Paper Scissors)
 
 while read line; do
-    oppo=$(echo $line | awk '{ print $1 }')
-    oppo=$((36#$oppo-9))    # a=1 b=2 c=3
-    self=$(echo $line | awk '{ print $2 }')
-    self=$((36#$self-32))   # x=1 y=2 z=3
-    score=$((${scores[$(($oppo-1+3*(($self-1))))]}))
-    #echo "$line ($oppo ${hands[$oppo-1]} vs $self ${hands[$self-1]}): $(($score*3)) + $self"
-    sum=$(($sum+$score*3+$self))
+    if [ -n "$line" ]; then
+        oppo=$(echo $line | awk '{ print $1 }')
+        oppo=$((36#$oppo-9))    # a=1 b=2 c=3
+        self=$(echo $line | awk '{ print $2 }')
+        self=$((36#$self-32))   # x=1 y=2 z=3
+        score=$((${scores[$(($oppo-1+3*(($self-1))))]}))
+        #echo "$line ($oppo ${hands[$oppo-1]} vs $self ${hands[$self-1]}): $(($score*3)) + $self"
+        sum=$(($sum+$score*3+$self))
+    fi
 done < $1
 
 echo $sum
