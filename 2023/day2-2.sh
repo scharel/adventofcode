@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# https://adventofcode.com/2023/day/2 part 1
+# https://adventofcode.com/2023/day/2 part 2
 
 if [ ! -f "$1" ]; then
     echo "Usage $0 <input-file>"
